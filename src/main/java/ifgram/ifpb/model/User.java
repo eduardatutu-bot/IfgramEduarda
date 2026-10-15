@@ -9,7 +9,7 @@ import jakarta.persistence.GenerationType;
 
     @Entity
     @Table(name = "tb_user")
-    public class UserModel {
+    public class User {
 
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,10 +21,10 @@ import jakarta.persistence.GenerationType;
         @Column(nullable = true, unique = true)
         private String email;
 
-        public UserModel() {
+        public User() {
         }
 
-        public UserModel(String nome, String email){
+        public User(String nome, String email){
             this.nome = nome;
             this.email = email;
         }
