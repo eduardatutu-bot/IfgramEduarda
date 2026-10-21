@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Optional;
 
 import ifgram.ifpb.repository.UserRepository;
-import org.aspectj.weaver.bcel.ExceptionRange;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -47,18 +46,18 @@ public class UserService {
             listaUsuariosResponse.add(userReponse);
         }
         return listaUsuariosResponse;
+    }
 
-        public UserResponse atualizarUsuario(UserRequest UserRequest) throw Expection {
-            Optional<User> usuario = repository.findByEmail(userRequest.email());
-            if (usuario.isEmpty()) {
-                throw new Expection("usuário não existe na base de dados.");
-            }
-            User usuarioSalvo = usuario.get();
-            usuarioSalvo.setNome(request.nome());
-            repository.save(usuarioSalvo);
-
-            return UserResponse.from(usuarioSalvo);
+    public UserResponse atualizarUsuario(UserRequest request) throws Exception {
+        Optional<User> usuario = repository.findByEmail(request.email());
+        if (usuario.isEmpty()) {
+            throw new Exception("usuário não existe na base de dados.");
         }
+        User usuarioSalvo = usuario.get();
+        usuarioSalvo.setNome(request.nome());
+        repository.save(usuarioSalvo);
+
+        return UserResponse.from(usuarioSalvo);
     }
 
 }
