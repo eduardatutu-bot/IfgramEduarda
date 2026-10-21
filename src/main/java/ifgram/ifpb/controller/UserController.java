@@ -37,8 +37,8 @@ public class UserController {
     }
 
     @DeleteMapping
-    public String deleteUser(){
-        return "chamei o endpoint como um DELETE!";
+    public void deleteUser(UserRequest request) throws Exception {
+        service.deletarUsuario(request);
     }
 
 }
